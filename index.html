@@ -3,39 +3,40 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="layout.css">
 		<script>
-			var interrogatiScelti = [23,12] //se lasciata vuota, verranno tutti generati a caso
-
-
+			var bias = [23,12] //se lasciata vuota, verranno tutti generati a caso
 			var i = 0
 			function generate() {
-				var numeroMassimo=document.getElementById('numeroMassimo').value
-				var numeroGenerato = 0
-				if(i<interrogatiScelti.length)
+				var maxValue=document.getElementById('maxValue').value
+				if(maxValue =="")
 				{
-					numeroGenerato = interrogatiScelti[i]
-					i++
+					window.alert("Set up a max value!");
 				}
 				else
 				{
-					numeroGenerato = Math.floor(Math.random() * numeroMassimo+1)
-				}
-				document.getElementById('risultato').innerHTML+="Il numero uscito e': "+ numeroGenerato +"<br>"
+					var valueGenerated = 0
+					if(i<bias.length)
+					{
+						valueGenerated = bias[i]
+					}
+					else
+					{
+						valueGenerated = Math.floor(Math.random() * maxValue+1)
+					}
+					i++
+					document.getElementById('result').innerHTML+=i +") "+ valueGenerated +"<br>"
+				}	
 			}
 		</script>
 	</head>
 	<body>
 		<div id="outerBox">
-			<br>
-			<h1>Generatore Numeri Casuale</h1>
-			Valore massimo
-			<input type="number" id="numeroMassimo">
-			<br>
-			<br>
-			<button onclick="generate()">Genera</button>
-			<br>
+			<h1>Random Numbers</h1>
+			<p>Max Value: <input type="number" id="maxValue"></p>
+			<button onclick="generate()">Generate</button>
 		</div>
-		<br>
-		<div id="risultato"> </div>
 		
+		<div id="result"> 
+			<p>Results:</p>
+		</div>
 	</body>
 </html>
